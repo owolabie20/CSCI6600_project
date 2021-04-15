@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block extrajs %}
+<!-- You should place your js files here -->
+<!-- <script src="/static/js/index.js"></script> -->
+{% endblock%}
+
+{% block title %}Daily Entries{% endblock %}
+
+{% block nav_daily %}class="active"{% endblock %}
+
+
+{% block content %}
+
+<h1 style="text-align: center">{{log_daily}}</h1>
+<form>
+    <div class="form-group">
+        <label for="selectClient">Select Client</label>
+        <select class="form-control" id="selectClient">
+            <%for c in {{log_clients}}}){ %>
+            <option value="<%=c.getString(1) %>"><%=c.getString(2) %><%=c.getString(3) %></option>
+            <%} %>
+        </select>
+    </div>
+</form>
+  
+{% endblock %}

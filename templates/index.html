@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block extrajs %}
+<!-- You should place your js files here -->
+<!-- <script src="/static/js/index.js"></script> -->
+{% endblock%}
+
+{% block title %}Index{% endblock %}
+
+{% block nav_index %}class="active"{% endblock %}
+
+
+{% block content %}
+
+<h1>{{log_index}}</h1>
+<h2 style="border-bottom: #9C1A1C; border-bottom-width: thin;">Team</h2>
+<p>Elizabeth Owolabi</p>
+<h2 style="border-bottom: #9C1A1C; border-bottom-width: thin;">Project</h2>
+<p>An implementation of a simple program that holds basic data information of the facility and allow for staff to input
+additional information regarding daily activities of the client and also specialized form that are required.</p>
+<h2 style="border-bottom: #9C1A1C; border-bottom-width: thin;">Motivation</h2>
+<p>I worked in home health facility and saw the need for online system, though there are some systems they are usually
+extremely expensive. I though this would be a fun project to see how much I can create.</p>
+<h2 style="border-bottom: #9C1A1C; border-bottom-width: thin;">Components</h2>
+<p>PostgreSQL</p>
+<p>Flask</p>
+<p>Jinja</p>
+  
+{% endblock %}
