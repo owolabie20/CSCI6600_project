@@ -19,7 +19,7 @@ def daily():
     log = 'Daily Entries'
     cursor.execute(f'SELECT SNN, first, last FROM clients;')
     clients = set(c for c in cursor.fetchall())
-    return render_template('daily.html', log_daily=log, clients, log_clients=clients)
+    return render_template('daily.html', log_daily=log, log_clients=clients)
 
 @app.route('/forms')
 def forms():
