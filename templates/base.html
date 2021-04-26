@@ -8,12 +8,40 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+       ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            /*The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.*/
+            overflow: hidden;
+            background-color: transparent;
+        }
 
+        li {
+            float: right;
+        }
+
+        li a {
+            display: block;
+            color: grey;
+            text-align: center;
+            /*14px up and down, 16 px left and right*/
+            padding: 14px 16px;
+            /*default style includes an ugly underline*/
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #0A0908;
+        }
+    </style>
     {% block extrajs %}{% endblock%}
     <title>{% block title %}{% endblock %} - Code Quality Check</title>
     {% endblock %}
   </head>
   <body>
+    <div class="container" {% block background %}{% endblock %}>
     <!-- We have done a similar example: Example 13 -->
     <nav class="navbar navbar-default">
       <!-- .container-fluid class provides a full width container, spanning the entire width of the viewport -->
@@ -24,15 +52,16 @@
           <a class="navbar-brand" href="#">CommSys</a>
         </div>
         <!-- Used on a <ul> container that contains the list items with links inside a navigation bar -->
-        <ul class="nav navbar-nav">
-          <li {% block nav_index %}{% endblock %}><a href="/">Home Page</a></li>
-          <li {% block nav_daily %}{% endblock %}><a href="/daily">Daily Entries</a></li>
-          <li {% block nav_forms %}{% endblock %}><a href="/forms">Forms</a></li>
-          <li {% block nav_facility %}{% endblock %}><a href="/facility">Facility</a></li>
+        <ul class="nav navbar-nav mr-auto">
+          <li {% block nav_index %}{% endblock %}><a href="/">Home</a></li>
+          <li {% block nav_daily %}{% endblock %}><a href="/daily">Daily Form</a></li>
+          <li {% block nav_forms %}{% endblock %}><a href="/forms">Clients</a></li>
+          <li {% block nav_facility %}{% endblock %}><a href="/facilities">Facilities</a></li>
+          <li {% block nav_facility %}{% endblock %}><a href="/employees">Employees</a></li>
         </ul>
       </div>
     </nav>
     <div id="content">{% block content %}{% endblock %}</div>
-
+  </div>
   </body>
 </html>
