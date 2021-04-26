@@ -20,7 +20,7 @@ def daily():
     return render_template('daily.html', log_daily=log)
 
 @app.route('/clients')
-def daily():
+def client():
     log = 'Clients'
     return render_template('client.html', log_client=log)
 
