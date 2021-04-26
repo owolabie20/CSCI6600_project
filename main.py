@@ -16,20 +16,23 @@ def index():
 
 @app.route('/daily')
 def daily():
-    log = 'Daily Entries'
-    cursor.execute(f'SELECT SNN, first, last FROM clients;')
-    clients = set(c for c in cursor.fetchall())
-    return render_template('daily.html', log_daily=log, log_clients=clients)
+    log = 'Daily Entry'
+    return render_template('daily.html', log_daily=log)
 
-@app.route('/forms')
-def forms():
-    log = 'Forms'
-    return render_template('forms.html', log_forms=log)
+@app.route('/clients')
+def daily():
+    log = 'Clients'
+    return render_template('client.html', log_client=log)
 
-@app.route('/facility')
+@app.route('/facilities')
 def facility():
-    log = 'Facility'
+    log = 'Facilities'
     return render_template('facility.html', log_facility=log)
+
+@app.route('/employees')
+def employee()"
+    log = 'Employees'
+    return render_template('employee.html', log_employee=log)
 
 if __name__ == '__main__':
     app.debug = True
