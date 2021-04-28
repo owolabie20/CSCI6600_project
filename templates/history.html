@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block extrajs %}
+<!-- You should place your js files here -->
+<!-- <script src="/static/js/index.js"></script> -->
+{% endblock%}
+
+{% block title %}History{% endblock %}
+
+{% block background %}style="background-image: url('https://image.freepik.com/free-vector/modern-blue-medical-background_1055-6880.jpg'); ;background-size: 100%; background-color: rgba(255,255,255,1); background-blend-mode: luminosity; transition: background-color 1s ease-out;"{% endblock %}
+
+{% block nav_history %}class="active"{% endblock %}
+
+{% block content %}
+
+<h1 style="align-content: center; text-align: center">{{log_history}}</h1>
+
+<div id="viewPreviousClients">
+	<h1 style="align-content: center; text-align: center">Past Clients</h1>
+        <table class="table" style="border:1px solid black;">
+                <thead>
+                        <th>Address</th>
+                        <th>Date of Birth</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>SSN</th>
+                        <th>Enrolled</th>
+			<th>Discharged</th>
+                </thead>
+                <tbody>
+                        {% for client in clients %}
+                        <tr>
+                                {% for info in client %}
+                                <td>{{info}}</td>
+                                {% endfor %}
+                        </tr>
+                        {% endfor %}
+                </tbody>
+        </table>
+</div>
+
+<div id="viewPreviousEmployees">
+	<h1 style="align-content: center; text-align: center">Past Employees</h1>
+        <table class="table" style="border:1px solid black;">
+                <thead>
+                        <th>Address</th>
+                        <th>Gender</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>SSN</th>
+                        <th>Hired On</th>
+                        <th>Position</th>
+			<th>Ended On</th>
+                </thead>
+                <tbody>
+                        {% for employee in employees %}
+                        <tr>
+                                {% for info in employee %}
+                                <td>{{info}}</td>
+                                {% endfor %}
+                        </tr>
+                        {% endfor %}
+                </tbody>
+        </table>
+</div>
+{% endblock %}

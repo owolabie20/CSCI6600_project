@@ -2,11 +2,30 @@
 {% block extrajs %}
 <!-- You should place your js files here -->
 <!-- <script src="/static/js/index.js"></script> -->
+
+<style>
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: grey;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.block:hover {
+  background-color: #ddd;
+  color: black;
+}
+</style>
 {% endblock%}
 
 {% block title %}Clients{% endblock %}
 
-{% block background %}style="background-image: url('https://image.freepik.com/free-vector/modern-blue-medical-background_1055-6880.jpg'); ;background-size: 100%; background-color: rgba(255,255,255,1); background-blend-mode: luminosity; transition: background-color 1s ease-out;"{% endblock %}
+{% block background %}style="background-image: url('https://image.freepik.com/free-vector/modern-blue-medical-background_1055-6880.jpg'); background-size: 100%; background-color: rgba(255,255,255,1); background-blend-mode: luminosity; transition: background-color 1s ease-out;"{% endblock %}
 
 {% block nav_client %}class="active"{% endblock %}
 
@@ -14,5 +33,147 @@
 {% block content %}
 
 <h1 style="align-content: center; text-align: center">{{log_client}}</h1>
-  
+
+<div id="viewClients">
+	<h1 style="align-content: center; text-align: center">Clients</h1>
+	<table class="table" style="border:1px solid black;">
+		<thead>
+			<th>Address</th>
+			<th>Gender</th>
+			<th>Date of Birth</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>SSN</th>
+			<th>Enrolled</th>
+		</thead>
+		<tbody>
+			{% for client in clients %}
+			<tr>
+				{% for info in client %}
+				<td>{{info}}</td>
+				{% endfor %}
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+<div id="addClient">
+	<h1 style="align-content: center; text-align: center">Add Client</h1>
+	<p>Must provide input for all values in the form, if SSN is in table already will output an error</p>
+	<form action="/clients/add" method="POST">
+		<div class="row">
+			<div class="col-md-6">
+				<label for="first">First Name</label>
+				<input type="text" class="form-control" placeholder="First name" id="first" name="first">
+			</div>
+			<div class="col-md-6">
+				<label for="last">Last Name</label>
+				<input type="text" id="last" class="form-control" placeholder="Last name" name="last">
+			</div>
+		</div>
+		<div class="row">
+			<label for="address">Address</label>
+			<input type="text" id="address" class="form-control" placeholder="123 Main Street" name="address">
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<label for="enroll-date">Enrollment Date</label>
+				<input type="date" class="form-control" id="enroll-date" name="enroll-date">
+			</div>
+			<div class="col-md-6">
+				<label for="dob">Date of Birth</label>
+				<input type="date" class="form-control" id="dob" name="dob">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<label for="gender">Gender</label>
+				<select id="gender" name="gender" class="form-control">
+					<option selected>Male</option>
+					<option>Female</option>
+					<option>Genderfluid</option>
+					<option> Bigender</option>
+					<option>Genderqueer</option>
+					<option>Agender</option>
+					<option>Polygender</option>
+					<option>Non-binary</option>
+				</select>
+			</div>
+			<div class="col-md-6">
+				<label for="SSN">Social Security Number</label>
+				<input id="SSN" type="text" class="form-control" placeholder="SSN" name="SSN">
+			</div>
+		</div>
+		<div class="row">
+			<button type="submit" class="block">Submit</button>
+		</div>
+	</form>
+</div>
+
+<div id="removeClient">
+	<form action="/clients/delete" method="DELETE">
+		<div class="row">
+			<div class="col-md-6">
+			<label for="removeSSN">To remove client enter their Social Security Number</label>
+			<input id="removeSSN" type="text" class="form-control" placeholder="SSN" name="SSN">
+			</div>
+			<div class="col-md-6">
+				<button type="submit" class="block">Delete</button>
+			</div>
+		</div>
+	</form>
+</div>
+<div id="updateClient">
+	<h1 style="align-content: center; text-align: center">Update Client</h1>
+	<p>Note that client SSN must already be present in the table to correctly update client. Cannot update SSN of client, must provide input for all values in the form.</p>
+	<form action="/clients/update" method="PUT">
+                <div class="row">
+                        <div class="col-md-6">
+                                <label for="first">First Name</label>
+                                <input type="text" class="form-control" placeholder="First name" id="first" name="first">
+                        </div>
+                        <div class="col-md-6">
+                                <label for="last">Last Name</label>
+                                <input type="text" id="last" class="form-control" placeholder="Last name" name="last">
+                        </div>
+                </div>
+                <div class="row">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" class="form-control" placeholder="123 Main Street" name="address">
+                </div>
+                <div class="row">
+                        <div class="col-md-6">
+                                <label for="enroll-date">Enrollment Date</label>
+                                <input type="date" class="form-control" id="enroll-date" name="enroll-date">
+                        </div>
+                        <div class="col-md-6">
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" class="form-control" id="dob" name="dob">
+                        </div>    
+                </div> 
+                <div class="row">
+                        <div class="col-md-6">
+                                <label for="gender">Gender</label>
+                                <select id="gender" name="gender" class="form-control">
+                                        <option selected>Male</option>
+                                        <option>Female</option>
+                                        <option>Genderfluid</option>
+                                        <option> Bigender</option>
+                                        <option>Genderqueer</option>
+                                        <option>Agender</option>
+                                        <option>Polygender</option>
+                                        <option>Non-binary</option>
+                                </select>
+                        </div>
+                        <div class="col-md-6">
+                                <label for="SSN">Social Security Number</label>
+                                <input id="SSN" type="text" class="form-control" placeholder="SSN" name="SSN">
+                        </div>
+                </div>
+                <div class="row">
+                        <button type="submit" class="block">Submit</button>
+		</div>
+        </form>
+</div>
 {% endblock %}

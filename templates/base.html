@@ -40,15 +40,15 @@
     <title>{% block title %}{% endblock %} - Code Quality Check</title>
     {% endblock %}
   </head>
-  <body>
-    <div class="container" {% block background %}{% endblock %}>
+  <body {% block background %}{% endblock %}>
+    <div class="container">
     <!-- We have done a similar example: Example 13 -->
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-transparent">
       <!-- .container-fluid class provides a full width container, spanning the entire width of the viewport -->
       <div class="container-fluid">
       <!-- .container class provides a responsive fixed width container -->
       <!-- <div class="container"> -->
-        <div class="navbar-header">
+        <div class="navbar-header" style="color:grey">
           <a class="navbar-brand" href="#">CommSys</a>
         </div>
         <!-- Used on a <ul> container that contains the list items with links inside a navigation bar -->
@@ -58,6 +58,7 @@
           <li {% block nav_client %}{% endblock %}><a href="/clients">Clients</a></li>
           <li {% block nav_facility %}{% endblock %}><a href="/facilities">Facilities</a></li>
           <li {% block nav_employee %}{% endblock %}><a href="/employees">Employees</a></li>
+	  <li {% block nav_history %}{% endblock %}><a href="/history">History</a></li>
         </ul>
       </div>
     </nav>

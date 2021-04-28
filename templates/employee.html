@@ -2,6 +2,24 @@
 {% block extrajs %}
 <!-- You should place your js files here -->
 <!-- <script src="/static/js/index.js"></script> -->
+<style>
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: grey;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.block:hover {
+  background-color: #ddd;
+  color: black;
+}
+</style>
 {% endblock%}
 
 {% block title %}Employees{% endblock %}
@@ -14,5 +32,97 @@
 {% block content %}
 
 <h1 style="align-content: center; text-align: center">{{log_employee}}</h1>
-  
+
+<div id="viewEmployees">
+        <table class="table" style="border:1px solid black;">
+                <thead>
+                        <th>Address</th>
+                        <th>Gender</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>SSN</th>
+                        <th>Hired On</th>
+			<th>Position</th>
+                </thead>
+                <tbody>
+                        {% for employee in employees %}
+                        <tr>
+                                {% for info in employee %}
+                                <td>{{info}}</td>
+                                {% endfor %}
+                        </tr>
+                        {% endfor %}
+                </tbody>
+        </table>
+</div>
+
+<div id="addEmployee">
+        <form action="/employees/add" method="POST">
+                <div class="row">
+                        <div class="col-md-6">
+                                <label for="first">First Name</label>
+                                <input type="text" class="form-control" placeholder="First name" id="first" name="first">
+                        </div>
+                        <div class="col-md-6">
+                                <label for="last">Last Name</label>
+                                <input type="text" id="last" class="form-control" placeholder="Last name" name="last">
+                        </div>
+                </div>
+                <div class="row">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" class="form-control" placeholder="123 Main Street" name="address">
+                </div>
+                <div class="row">
+                        <div class="col-md-6">
+                                <label for="hire-date">Hire Date</label>
+                                <input type="date" class="form-control" id="hire-date" name="hire-date">
+                        </div>
+                        <div class="col-md-6">
+                                <label for="position">Position</label>
+                                <select id="position" name="position" class="form-control">
+                                        <option selected>admin</option>
+                                        <option>manager</option>
+                                        <option>staff</option>
+				</select>
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-md-6">
+                                <label for="gender">Gender</label>
+                                <select id="gender" name="gender" class="form-control">
+                                        <option selected>Male</option>
+                                        <option>Female</option>
+                                        <option>Genderfluid</option>
+                                        <option> Bigender</option>
+                                        <option>Genderqueer</option>
+                                        <option>Agender</option>
+                                        <option>Polygender</option>
+                                        <option>Non-binary</option>
+                                </select>
+                        </div>
+                        <div class="col-md-6">
+                                <label for="SSN">Social Security Number</label>
+                                <input id="SSN" type="text" class="form-control" placeholder="SSN" name="SSN">
+                        </div>
+                </div>  
+		</div>
+                <div class="row">
+                        <button type="submit" class="block">Submit</button>
+                </div>
+        </form>
+</div>
+
+<div id="removeEmployee">
+        <form action="/employees/delete" method="DELETE">
+                <div class="row">
+                        <div class="col-md-6">
+                        <label for="removeSSN">To remove employee enter their Social Security Number</label>
+                        <input id="removeSSN" type="text" class="form-control" placeholder="SSN" name="SSN">
+                        </div>
+                        <div class="col-md-6">
+                                <button type="submit" class="block">Delete</button>
+                        </div>
+                </div>
+        </form>
+</div>
 {% endblock %}

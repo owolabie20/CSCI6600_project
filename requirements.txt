@@ -5,3 +5,4 @@ python-dotenv
 loguru
 Flask-SQLAlchemy===2.4.1
 Flask-Migrate==2.5.2
+psycopg2-binary

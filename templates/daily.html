@@ -2,6 +2,24 @@
 {% block extrajs %}
 <!-- You should place your js files here -->
 <!-- <script src="/static/js/index.js"></script> -->
+<style>
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: grey;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.block:hover {
+  background-color: #ddd;
+  color: black;
+}
+</style>
 {% endblock%}
 
 {% block title %}Daily Entry{% endblock %}
@@ -14,15 +32,74 @@
 {% block content %}
 
 <h1 style="align-content: center; text-align: center">{{log_daily}}</h1>
-<form>
-    <div class="form-group">
-        <label for="selectClient">Select Client</label>
-        <select class="form-control" id="selectClient">
-            <%for c in {{log_clients}}}){ %>
-            <option value="<%=c.getString(1) %>"><%=c.getString(2) %><%=c.getString(3) %></option>
-            <%} %>
-        </select>
-    </div>
-</form>
+
+<div id="addClient">
+        <h2 style="align-content: center; text-align: center">Add Entry</h2>
+        <form action="/daily/add" method="POST">
+		 <div class="row">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" class="form-control" placeholder="123 Main Street" name="date">
+                </div>
+		 <div class="row">
+			<div class="col-md-6">
+				<label for="employee">Employee</label>
+                                <select id="employee" name="employee" class="form-control">
+                                        <option selected>Choose ..</option>
+					{% for employee in employees %}
+						<option>{{employee}}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="col-md-6">
+                                <label for="client">Client</label>
+                                <select id="client" name="client" class="form-control">
+                                        <option selected>Choose ..</option>
+                                        {% for client in clients %}
+                                                  <option>{{client}}</option>
+                                        {% endfor %}
+                                </select>
+                        </div>
+		</div>
+                <div class="row">
+                        <div class="col-md-6">
+                                <label for="shift">Shift</label>
+                                <select id="shift" name="shift" class="form-control">
+                                        <option selected>3-11</option>
+                                        <option>11-9</option>
+                                        <option>9-3</option>
+				</select>
+                        </div>
+                        <div class="col-md-6">
+                                <label for="meds">Meds</label>
+                                <select id="meds" name="meds" class="form-control">
+                                        <option selected>took all</option>
+                                        <option>took most</option>
+                                        <option>took none</option>
+				</select>
+                        </div>
+                </div>
+		<div class="row">
+			<label for="activities">Activities</label>
+			<input type="text" id="activities" class="form-control" placeholder="shopping, running, sleeping" name="activities">
+		</div>
+                <div class="row">
+                        <div class="col-md-6">
+                                <label for="isbehavior">Any Behavior(s)</label>
+                                <select id="isbehavior" name="isbehavior" class="form-control">
+                                        <option selected>yes</option>
+                                        <option>no</option>
+                                        <option>N/A</option>
+                                </select>
+                        </div>
+                        <div class="col-md-6">
+                                <label for="behavior">Explain Behavior(s)</label>
+                                <input type="text" class="form-control" placeholder="hitting head, N/A, none" id="behavior" name="behavior">
+                        </div>
+                </div>
+		<div class="row">
+                        <button type="submit" class="block">Submit</button>
+                </div>
+	</form>
+</div>
   
 {% endblock %}
