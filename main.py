@@ -117,12 +117,15 @@ def addFacility():
 @app.route('/facilities/delete', methods=['DELETE','GET'])
 def deleteFacility():
 	if request.method == 'DELETE':
-	        data = request.form.get('SSN')
-        	cur.execute("DELETE FROM facilities WHERE site_id= %s", data)
-        	connection.commit()
-        	return redirect('/facilities')
+		data = request.form.get('site_id')
+		print(data)
+		cur.execute("DELETE FROM facilities WHERE site_id= '%s' RETURNING name", (data,))
+		name = cur.fetchall()
+		connection.commit()
+		print(name)
+		return redirect('/facilities')
 	else:
-		return 'Unable to delete facility'
+		return 'Fail to delete facility'
 
 @app.route('/employees')
 def employee():
